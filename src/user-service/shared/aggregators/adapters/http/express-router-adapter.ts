@@ -1,13 +1,15 @@
 import { Express } from 'express';
-import { ControllerAdapter } from '@user-service/shared/protocols/http';
+import { ControllerAdapter } from '@user-service/shared/protocols/controller';
 
-import { Route, RouterAdapter } from '@user-service/shared/protocols/route';
+import { Route } from '@user-service/shared/protocols/route';
 import { ExpressController, ExpressControllerAdapter } from './express-controller-adapter';
+import { RouterAdapter } from '@user-service/shared/protocols/route';
+import { HttpController } from '@user-service/shared/protocols/http';
 
 export class ExpressRouterAdapter implements RouterAdapter {
   public readonly basePath: string;
   private readonly router: Express;
-  private readonly adapter: ControllerAdapter<ExpressController>;
+  private readonly adapter: ControllerAdapter<HttpController, ExpressController>;
 
   constructor(basePath: string, router: Express) {
     this.basePath = basePath;

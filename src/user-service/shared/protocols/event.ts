@@ -1,4 +1,4 @@
-import { Consumer, Producer } from './pub-sub';
+import { Producer } from './pub-sub';
 
 export abstract class Emitter<EventPaylod> {
   protected abstract readonly event: string;
@@ -6,8 +6,16 @@ export abstract class Emitter<EventPaylod> {
   abstract emit(payload: EventPaylod): Promise<void>;
 }
 
-export abstract class Listener<EventPaylod> {
-  protected abstract readonly event: string;
-  protected abstract readonly consumer: Consumer<unknown>;
+export abstract class EventController<EventPaylod> {
   abstract listen(payload: EventPaylod): Promise<void>;
+}
+
+export interface Subscription {
+  event: string;
+  handler: EventController<unknown>;
+  //TODO: configurações do consumer
+}
+
+export interface SubscriptionAdapter {
+  handle(routes: Array<Subscription>): Promise<void>;
 }

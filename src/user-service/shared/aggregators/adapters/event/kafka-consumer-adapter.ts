@@ -1,8 +1,8 @@
-import { Consumer as KafkaConsumer, Kafka } from 'kafkajs';
+import { Consumer as KafkaConsumer, EachMessageHandler, Kafka } from 'kafkajs';
 
 import { Consumer } from '@user-service/shared/protocols/pub-sub';
 
-export class KafkaConsumerAdapter<Message> implements Consumer<Message> {
+export class KafkaConsumerAdapter<Message> implements Consumer<Message, EachMessageHandler> {
   private readonly consumer: KafkaConsumer;
   private isConnected: boolean = false;
 
@@ -23,21 +23,15 @@ export class KafkaConsumerAdapter<Message> implements Consumer<Message> {
     }
   }
 
-  async subscribe(topic: string, callback: (message: Message) => Promise<void>): Promise<void> {
+  async subscribe(topic: string, callback: EachMessageHandler): Promise<void> {
     if (!this.isConnected) {
-      throw new Error('Kafka producer is not connected');
+      throw new Error('Kafka consumer is not connected');
     }
 
     await this.consumer.subscribe({ topic });
 
     await this.consumer.run({
-      eachMessage: async (data) => {
-        // Possível momento para algum log interno, no inicio da recepção de uma mensagem do Kafka
-        await callback(data.message.value as Message);
-        // TODO avaliar se precisa de um JSON parse
-        // TODO avaliar se ficaria bom try / catch + commit manual da mensagem
-        // Possível momento para algum log interno, ao termino da recepção de uma mensagem do Kafka
-      },
+      eachMessage: callback,
     });
   }
 }

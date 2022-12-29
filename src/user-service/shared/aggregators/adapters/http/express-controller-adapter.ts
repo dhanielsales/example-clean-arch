@@ -1,14 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 
-import {
-  ControllerAdapter,
-  HttpController,
-  HttpRequest,
-} from '@user-service/shared/protocols/http';
+import { HttpController, HttpRequest } from '@user-service/shared/protocols/http';
+import { ControllerAdapter } from '@user-service/shared/protocols/controller';
 
 export type ExpressController = (request: Request, response: Response, next: NextFunction) => void;
 
-export class ExpressControllerAdapter implements ControllerAdapter<ExpressController> {
+export class ExpressControllerAdapter
+  implements ControllerAdapter<HttpController, ExpressController>
+{
   public handle(controller: HttpController) {
     return (request: Request, response: Response, next: NextFunction) => {
       const httpRequest: HttpRequest = {

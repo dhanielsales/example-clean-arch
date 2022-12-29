@@ -4,11 +4,11 @@ export interface Producer<Message, Options = unknown> {
   publish(topic: string, message: Message): Promise<void>;
 }
 
-export interface Consumer<Message, Options = unknown> {
-  subscribe(
-    topic: string,
-    callback: (message: Message) => Promise<void>,
-    options?: Options,
-  ): Promise<void>;
-  subscribe(topic: string, callback: (message: Message) => Promise<void>): Promise<void>;
+export interface Consumer<
+  Message,
+  Callback = (message: Message) => Promise<void>,
+  Options = unknown,
+> {
+  subscribe(topic: string, callback: Callback, options?: Options): Promise<void>;
+  subscribe(topic: string, callback: Callback): Promise<void>;
 }
