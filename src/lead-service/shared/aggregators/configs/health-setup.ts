@@ -21,11 +21,11 @@ export class HealthSetup {
     this.eventProvider = params.eventProvider;
   }
 
-  public start(): void {
+  public async start(): Promise<void> {
     this.setup();
 
     this.httpServer.start();
-    this.eventProvider.start();
+    await this.eventProvider.start();
   }
 
   private setup(): void {

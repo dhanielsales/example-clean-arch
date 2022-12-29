@@ -10,7 +10,7 @@ async function main(): Promise<void> {
     eventProvider: EventProvider.getInstance(),
   });
 
-  healthConfig.start();
+  await healthConfig.start();
 }
 
 main().catch(console.error);
