@@ -1,7 +1,3 @@
-export interface ControllerAdapter<T = void> {
-  handle(controller: HttpController): T;
-}
-
 export interface HttpController {
   handle(request: HttpRequest): Promise<HttpResponse>;
 }

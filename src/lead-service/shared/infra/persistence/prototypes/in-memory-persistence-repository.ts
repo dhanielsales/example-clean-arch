@@ -1,5 +1,5 @@
-import { BaseSchema } from '@user-service/shared/schemas/base';
-import { PersistenceRepository } from '@user-service/shared/protocols/persistence-repository';
+import { BaseSchema } from '@lead-service/shared/schemas/base';
+import { PersistenceRepository } from '@lead-service/shared/protocols/persistence-repository';
 
 export class InMemoryPersistenceRepository<Schema extends BaseSchema = any>
   implements PersistenceRepository<Schema>

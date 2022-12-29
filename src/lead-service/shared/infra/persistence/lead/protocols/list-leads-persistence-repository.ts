@@ -1,5 +1,5 @@
-import { Lead } from '@lead-service/entities/lead/lead-entity';
+import { LeadSchema } from '@lead-service/shared/schemas/lead';
 
 export interface ListLeadsPersistenceRepository {
-  handle(): Promise<Lead[]>;
+  handle(): Promise<LeadSchema[]>;
 }

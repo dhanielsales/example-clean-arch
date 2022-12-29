@@ -1,7 +1,7 @@
 import { Express } from 'express';
-import { ControllerAdapter } from '@user-service/shared/protocols/http';
+import { ControllerAdapter } from '@lead-service/shared/protocols/http';
 
-import { Route } from '@user-service/shared/protocols/route';
+import { Route } from '@lead-service/shared/protocols/route';
 import { ExpressController, ExpressControllerAdapter } from './express-controller-adapter';
 import { RouterAdapter } from '@lead-service/shared/protocols/route';
 

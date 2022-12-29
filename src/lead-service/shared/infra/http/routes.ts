@@ -1,4 +1,4 @@
-import { Route } from '@user-service/shared/protocols/route';
+import { Route } from '@lead-service/shared/protocols/route';
 
 import { CreateLeadControllerFactory } from '@lead-service/shared/aggregators/factories/controllers/http/create-lead-controller';
 import { ListLeadsControllerFactory } from '@lead-service/shared/aggregators/factories/controllers/http/list-leads-controller';

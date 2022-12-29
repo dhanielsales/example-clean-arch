@@ -1,5 +1,5 @@
-import { Lead } from '@lead-service/entities/lead/lead-entity';
+import { LeadSchema } from '@lead-service/shared/schemas/lead';
 
 export interface CreateLeadPersistenceRepository {
-  handle(email: string, password: string, phone: string): Promise<Lead>;
+  handle(email: string, password: string, phone: string): Promise<LeadSchema>;
 }
