@@ -11,7 +11,7 @@ export class ExpressRouterAdapter implements RouterAdapter {
   private readonly router: Express;
   private readonly adapter: ControllerAdapter<HttpController, ExpressController>;
 
-  constructor(basePath: string, router: Express) {
+  constructor(router: Express, basePath: string = '/') {
     this.basePath = basePath;
     this.router = router;
     this.adapter = new ExpressControllerAdapter();

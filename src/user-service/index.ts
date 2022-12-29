@@ -1,18 +1,16 @@
 import '@user-service/shared/aggregators/configs/environment';
 
-import express from 'express';
+import { HttpServer } from '@user-service/shared/aggregators/configs/http-server';
+import { HealthSetup } from '@user-service/shared/aggregators/configs/health-setup';
+import { EventProvider } from '@user-service/shared/aggregators/configs/event-provider';
 
-import { ExpressRouterAdapter } from '@user-service/shared/aggregators/adapters/http/express-router-adapter';
-import { Routes } from '@user-service/shared/infra/http/routes';
+async function main(): Promise<void> {
+  const healthConfig = new HealthSetup({
+    httpServer: HttpServer.getInstance(),
+    eventProvider: EventProvider.getInstance(),
+  });
 
-const server = express();
+  healthConfig.start();
+}
 
-server.use(express.json());
-
-const adapter = new ExpressRouterAdapter('/', server);
-
-adapter.handle(Routes);
-
-server.listen(process.env.USER_SERVICE_HTTP_SERVER_PORT, () =>
-  console.log('User service listening on port ' + process.env.USER_SERVICE_HTTP_SERVER_PORT),
-);
+main().catch(console.error);

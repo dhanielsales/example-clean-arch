@@ -3,7 +3,7 @@ import { Consumer as KafkaConsumer, EachMessageHandler, Kafka } from 'kafkajs';
 import { Consumer } from '@user-service/shared/protocols/pub-sub';
 
 export class KafkaConsumerAdapter<Message> implements Consumer<Message, EachMessageHandler> {
-  private readonly consumer: KafkaConsumer;
+  public readonly consumer: KafkaConsumer;
   private isConnected: boolean = false;
 
   constructor(kafka: Kafka) {
