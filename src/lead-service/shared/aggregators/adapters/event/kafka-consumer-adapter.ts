@@ -23,6 +23,15 @@ export class KafkaConsumerAdapter<Message> implements Consumer<Message, EachMess
     }
   }
 
+  public async stop(): Promise<void> {
+    try {
+      await this.consumer.stop();
+      await this.consumer.disconnect();
+    } catch (error) {
+      console.log('Error disconnect the consumer: ', error);
+    }
+  }
+
   async subscribe(topic: string, callback: EachMessageHandler): Promise<void> {
     if (!this.isConnected) {
       throw new Error('Kafka consumer is not connected');

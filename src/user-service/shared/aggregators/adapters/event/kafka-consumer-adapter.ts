@@ -1,6 +1,6 @@
 import { Consumer as KafkaConsumer, EachMessageHandler, Kafka } from 'kafkajs';
 
-import { Consumer } from '@user-service/shared/protocols/pub-sub';
+import { Consumer } from '@lead-service/shared/protocols/pub-sub';
 
 export class KafkaConsumerAdapter<Message> implements Consumer<Message, EachMessageHandler> {
   public readonly consumer: KafkaConsumer;
@@ -20,6 +20,15 @@ export class KafkaConsumerAdapter<Message> implements Consumer<Message, EachMess
       await this.consumer.connect();
     } catch (error) {
       console.log('Error connecting the consumer: ', error);
+    }
+  }
+
+  public async stop(): Promise<void> {
+    try {
+      await this.consumer.stop();
+      await this.consumer.disconnect();
+    } catch (error) {
+      console.log('Error disconnect the consumer: ', error);
     }
   }
 

@@ -4,6 +4,8 @@ import { Server } from 'http';
 
 import { ExpressRouterAdapter } from '@lead-service/shared/aggregators/adapters/http/express-router-adapter';
 import { Routes } from '@lead-service/shared/infra/http/routes';
+import { ExpressErrorMiddlewareAdapter } from '../adapters/http/express-error-middleware-adapter';
+import { HttpErrorHandlerFactory } from '../factories/presentation/middlewares/http/http-error-handler';
 
 export class HttpServer {
   private static instance: HttpServer;
@@ -25,6 +27,7 @@ export class HttpServer {
   public start(): void {
     this.setupMiddlewares();
     this.setupRouter();
+    this.setupErrorHandler();
 
     const port = process.env.LEAD_SERVICE_HTTP_SERVER_PORT;
 
@@ -59,5 +62,10 @@ export class HttpServer {
 
   private setupMiddlewares(): void {
     this.creator.use(express.json());
+  }
+
+  private setupErrorHandler(): void {
+    const adapter = new ExpressErrorMiddlewareAdapter();
+    this.creator.use(adapter.handle(HttpErrorHandlerFactory.make()));
   }
 }

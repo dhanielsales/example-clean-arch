@@ -42,7 +42,7 @@ export class HealthSetup {
           process.exit(ExitStatus.Success);
         } catch (err) {
           const error: string = JSON.stringify(err);
-          console.log(`Application closed with error: ${error}`);
+          console.error(`Application closed with error: ${error}`);
           process.exit(ExitStatus.Failure);
         }
       });
@@ -51,18 +51,20 @@ export class HealthSetup {
 
   private setupUnhandledRejection(): void {
     process.on('unhandledRejection', (error: any, promise) => {
-      console.log(
+      console.error(
         `Application closed with unhandled promise. Promise: ${JSON.stringify(
           promise,
         )}, Error: ${JSON.stringify(error)}`,
       );
+      console.error(error);
       process.exit(ExitStatus.Failure);
     });
   }
 
   private setupUncaughtException(): void {
     process.on('uncaughtException', (error) => {
-      console.log(`Application closed with uncaught exception. Error: ${JSON.stringify(error)}`);
+      console.error(`Application closed with uncaught exception. Error: ${JSON.stringify(error)}`);
+      console.error(error);
       process.exit(ExitStatus.Failure);
     });
   }

@@ -40,7 +40,7 @@ export class EventProvider {
   public async close(): Promise<void> {
     if (this.consumer) {
       try {
-        await this.consumer.consumer.disconnect();
+        await this.consumer.stop();
         console.log('Event Provider closed with success');
       } catch (err) {
         const error: string = JSON.stringify(err);

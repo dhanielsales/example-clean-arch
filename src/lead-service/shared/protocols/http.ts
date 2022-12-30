@@ -1,3 +1,7 @@
+export interface Middleware {
+  handle(request: HttpRequest, error?: Error): Promise<HttpResponse>;
+}
+
 export interface HttpController {
   handle(request: HttpRequest): Promise<HttpResponse>;
 }
