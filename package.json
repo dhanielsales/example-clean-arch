@@ -9,10 +9,15 @@
   "scripts": {
     "dev:user-service": "ts-node-dev --watch --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/user-service/index.ts",
     "dev:lead-service": "ts-node-dev --watch --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/lead-service/index.ts",
-    "start:user-service": "node build/user-service/index.ts",
-    "start:lead-service": "node build/lead-service/index.ts",
+    "start:user-service": "node build/user-service/index.js",
+    "start:lead-service": "node build/lead-service/index.js",
     "build": "tsc --project tsconfig.json",
-    "type-check": "tsc --pretty --noEmit"
+    "type-check": "tsc --pretty --noEmit",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:watch": "jest --passWithNoTests --silent --noStackTrace --runInBand --watch",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:staged": "yarn test -o",
+    "test:ci": "yarn test --coverage"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
@@ -34,10 +39,11 @@
     "eslint-import-resolver-typescript": "2.0.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-prettier": "3.1.4",
-    "jest": "^26.6.3",
+    "jest": "28.1.2",
+    "@types/jest": "28.1.2",
     "prettier": "^2.2.1",
-    "ts-jest": "^26.4.4",
-    "ts-node": "^9.1.1",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.7.1",
     "ts-node-dev": "^1.1.1",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",

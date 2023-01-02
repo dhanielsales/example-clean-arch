@@ -5,8 +5,10 @@
 - [x] Migrate Kafka start to config and implement healthy start
 - [x] Migrate Express start to config and implement healthy start
 - [x] Create config structure for app logs
-- [ ] Tests
 - [x] Check kafka error on graceful shutdown consumer (ERR_IPC_CHANNEL_CLOSED)
+- [x] Setup Tests
+- [ ] Unit Tests
+- [ ] Fix build to considerate import paths
 
 #### **user service**
 
