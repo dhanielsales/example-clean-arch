@@ -12,7 +12,7 @@ interface Params {
 }
 
 export class HealthSetup {
-  private readonly signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT'];
+  private readonly signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT', 'SIGUSR2'];
   private readonly httpServer: HttpServer;
   private readonly eventProvider: EventProvider;
 
@@ -33,7 +33,7 @@ export class HealthSetup {
     this.setupUncaughtException();
 
     for (const signal of this.signals) {
-      process.on(signal, async (): Promise<void> => {
+      process.once(signal, async (): Promise<void> => {
         try {
           await this.httpServer.close();
           await this.eventProvider.close();

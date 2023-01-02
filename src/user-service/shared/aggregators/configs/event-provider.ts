@@ -1,4 +1,4 @@
-import { Kafka } from 'kafkajs';
+import { Kafka, logLevel } from 'kafkajs';
 
 import { subscriptions } from '@user-service/shared/infra/events/subscriptions';
 import { KafkaSubscriptionAdapter } from '@user-service/shared/aggregators/adapters/event/kafka-subscription-adapter';
@@ -13,6 +13,7 @@ export class EventProvider {
     this.creator = new Kafka({
       clientId: 'user-service-app',
       brokers: [process.env.KAFKA_ADDRESS as string],
+      logLevel: logLevel.ERROR,
     });
   }
 

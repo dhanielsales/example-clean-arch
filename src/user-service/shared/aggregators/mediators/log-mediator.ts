@@ -1,5 +1,5 @@
-import { Logger } from '@lead-service/shared/protocols/log';
-import { Mediator } from '@lead-service/shared/protocols/mediator';
+import { Logger } from '@user-service/shared/protocols/log';
+import { Mediator } from '@user-service/shared/protocols/mediator';
 import { LogFormatter } from '../logs/log-formatter';
 
 export class LogMediator implements Mediator<Logger> {

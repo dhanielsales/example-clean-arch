@@ -25,8 +25,14 @@ export class KafkaConsumerAdapter<Message> implements Consumer<Message, EachMess
 
   public async stop(): Promise<void> {
     try {
-      await this.consumer.stop();
-      await this.consumer.disconnect();
+      new Promise<void>((resolve, reject) => {
+        this.consumer
+          .disconnect()
+          .then(() => {
+            this.consumer.on(this.consumer.events.DISCONNECT, () => resolve());
+          })
+          .catch((err) => reject(err));
+      });
     } catch (error) {
       console.log('Error disconnect the consumer: ', error);
     }

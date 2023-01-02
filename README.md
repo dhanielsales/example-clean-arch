@@ -6,7 +6,7 @@
 - [x] Migrate Express start to config and implement healthy start
 - [x] Create config structure for app logs
 - [ ] Tests
-- [ ] Check kafka error on graceful shutdown consumer (ERR_IPC_CHANNEL_CLOSED)
+- [x] Check kafka error on graceful shutdown consumer (ERR_IPC_CHANNEL_CLOSED)
 
 #### **user service**
 
