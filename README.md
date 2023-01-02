@@ -10,13 +10,12 @@
 
 #### **user service**
 
-- [ ] Increment User entity to more real world example
-- [ ] Increment User schema to compatibility with new user entity
-- [ ] Create consume example to send email for user email when user are created
-- [ ] Increment insominia collection
+- [x] Increment User entity to more real world example
+- [x] Increment User schema to compatibility with new user entity
+- [x] Create consume example to send email for user email when user are created
+- [x] Increment insominia collection
 
 #### **lead service**
 
-- [ ] Increment User schema to compatibility with new user entity
-- [ ] Create publish example to send email for lead email when lead are created
-- [ ] Increment insominia collection
+- [x] Increment User schema to compatibility with new user entity
+- [x] Increment insominia collection

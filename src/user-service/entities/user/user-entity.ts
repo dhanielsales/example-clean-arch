@@ -1,11 +1,9 @@
 export class User {
-  public readonly id: string;
-  public readonly email: string;
-  public readonly password: string;
-
-  constructor(id: string, email: string, password: string) {
-    this.id = id;
-    this.email = email;
-    this.password = password;
-  }
+  constructor(
+    public readonly id: string,
+    public readonly name: string,
+    public readonly phone: string,
+    public readonly email: string,
+    public readonly password: string,
+  ) {}
 }

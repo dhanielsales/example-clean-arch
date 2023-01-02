@@ -8,10 +8,6 @@ export class UserCreatedController extends EventController<UserSchema> {
   }
 
   public async listen(eventPaload: UserSchema) {
-    const name: string = '';
-    const email: string = eventPaload.email;
-    const phone: string = '';
-
-    this.createLeadUsecase.handle(email, name, phone);
+    this.createLeadUsecase.handle(eventPaload.email, eventPaload.name, eventPaload.phone);
   }
 }

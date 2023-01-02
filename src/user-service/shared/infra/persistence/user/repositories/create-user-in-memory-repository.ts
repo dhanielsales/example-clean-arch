@@ -9,8 +9,15 @@ export class CreateUserInMemoryRepository implements CreateUserPersistenceReposi
     private readonly createUserRepository: CreateUserRepository,
   ) {}
 
-  public async handle(email: string, password: string): Promise<User> {
-    const user = this.createUserRepository.handle(email, password);
+  public async handle(
+    params: CreateUserPersistenceRepository.Params,
+  ): Promise<CreateUserPersistenceRepository.Response> {
+    const user = this.createUserRepository.handle({
+      name: params.name,
+      phone: params.phone,
+      email: params.email,
+      password: params.password,
+    });
 
     await this.persistenceRepository.create(user);
 

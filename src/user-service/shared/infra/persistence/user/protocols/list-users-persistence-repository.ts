@@ -1,5 +1,9 @@
-import { User } from '@user-service/entities/user/user-entity';
+import { UserSchema } from '@user-service/shared/schemas/user';
 
 export interface ListUsersPersistenceRepository {
-  handle(): Promise<User[]>;
+  handle(): Promise<ListUsersPersistenceRepository.Response>;
+}
+
+export namespace ListUsersPersistenceRepository {
+  export type Response = UserSchema[];
 }
